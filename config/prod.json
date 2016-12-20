@@ -1,0 +1,15 @@
+{
+	"angular": {
+		"debug": false
+	},
+	"url": {
+		"base": "/dist/site/"
+	},
+	"carbon": {
+		"domain": "localhost:8083",
+		"protocol": "http",
+		"app": {
+			"slug": "test-blog/"
+		}
+	}
+}

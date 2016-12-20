@@ -1,0 +1,14 @@
+<div class="well well-sm">
+	<h3> Create new posts </h3>
+
+	<form (ngSubmit)="createPost( postTitle, postText )">
+		<input [(ngModel)]= "postTitle" type="text" placeholder="New posts's name" required name="title">
+		<input [(ngModel)]= "postText" type="text" placeholder="New posts's content" required name="text">
+		<div *ngFor="let user of userService.users">
+			<p>{{user.name}}</p>
+			<button *ngIf="!isAuthor( user )" type="button" class="btn btn-default" (click)="addAuthor( user )"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
+			<button *ngIf="isAuthor( user )" type="button" class="btn btn-default" (click)="removeAuthor( user )"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></button>
+		</div>
+		<button type="submit" class="btn btn-default">Submit</button>
+	</form>	
+</div>	

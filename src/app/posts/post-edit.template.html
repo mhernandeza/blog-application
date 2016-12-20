@@ -1,0 +1,11 @@
+<form (ngSubmit)="submitEdit( postTitle, postText )">
+	<input [(ngModel)]= "postTitle" type="text" placeholder="{{post.title}}" name="title">
+	<input [(ngModel)]= "postText" type="text" placeholder="{{post.content}}" name="text">
+	<button type="submit" class="btn btn-default">Submit</button>
+	<button type="reset" class="btn btn-default" (click)="cancelEdit()">Cancel</button>
+	<div *ngFor="let author of userService.users">
+		<p>{{ author.name }}</p>	
+		<button *ngIf="!isAuthor( author )" type="button" class="btn btn-default" (click)="addAuthor( author )"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
+		<button *ngIf="isAuthor( author )" type="button" class="btn btn-default" (click)="removeAuthor( author )"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></button>
+	</div>
+</form>	

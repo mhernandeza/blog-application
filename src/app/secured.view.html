@@ -1,0 +1,31 @@
+<div class="container">
+	<div class ="row">
+		<h2>  Welcome back {{userService.loggedUser.name}} </h2>
+		<button class="btn btn-default" (click)="logout()">Logout</button>
+	</div>
+	<div class ="row">
+		<div class = col-sm-12>
+			<button  class="btn btn-default" (click)="refreshUsers()"> Refresh users </button>
+			<button  class="btn btn-default" (click)="refreshPosts()"> Refresh posts </button>
+		</div>
+	</div>
+
+	<div class="row">
+		<section class="col-sm-6">
+			<h3> Current users </h3>
+			<app-user *ngFor="let user of userService.users" [user]="user"></app-user>
+		</section>
+		<section class="col-sm-6">
+			<h3> Current posts</h3>
+			<app-post *ngFor="let post of postService.posts" [post]="post"></app-post>
+		</section>
+	</div>
+	<div class ="row">
+		<div class="col-sm-6">
+			<app-user-input></app-user-input>
+		</div>	
+		<div class="col-sm-6">
+			<app-post-input></app-post-input>
+		</div>	
+	</div>
+</div>
