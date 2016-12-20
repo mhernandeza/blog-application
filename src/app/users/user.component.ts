@@ -19,6 +19,7 @@ export class UserComponent{
 
 	private editingUser:boolean = false;
 	private showingPosts:boolean = false;
+	private modifiedUser:User = new User( "" );
 
 	private editUser():void {
 		this.editingUser = true;
@@ -38,13 +39,10 @@ export class UserComponent{
 
 	}
 
-	private showPosts():void {
-		this.showingPosts = true;
+	private togglePosts(){
+		this.showingPosts = !this.showingPosts;
 	}
 
-	private hidePosts():void {
-		this.showingPosts = false;
-	}
 }
 
 export default UserComponent;

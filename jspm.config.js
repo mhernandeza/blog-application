@@ -53,7 +53,7 @@ SystemJS.config({
     "angular2-carbonldp": "npm:angular2-carbonldp@0.4.1",
     "assert": "github:jspm/nodelibs-assert@0.2.0-alpha",
     "buffer": "github:jspm/nodelibs-buffer@0.2.0-alpha",
-    "carbonldp": "npm:carbonldp@0.39.0",
+    "carbonldp": "npm:carbonldp@0.40.0",
     "child_process": "github:jspm/nodelibs-child_process@0.2.0-alpha",
     "constants": "github:jspm/nodelibs-constants@0.2.0-alpha",
     "crypto": "github:jspm/nodelibs-crypto@0.2.0-alpha",
@@ -376,7 +376,7 @@ SystemJS.config({
         "to-arraybuffer": "npm:to-arraybuffer@1.0.1"
       }
     },
-    "npm:carbonldp@0.39.0": {
+    "npm:carbonldp@0.40.0": {
       "map": {
         "file-type": "npm:file-type@3.9.0"
       }

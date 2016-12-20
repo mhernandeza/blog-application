@@ -1,6 +1,5 @@
-import { Component, Inject } from "@angular/core";
+import { Component, Inject, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
-import { OnInit } from "@angular/core";
 
 import { AuthService } from "angular2-carbonldp/services";
 
@@ -14,10 +13,17 @@ import template from "./home.view.html!text"
 	styles: [],
 } )
 
-export class HomeView {
+export class HomeView implements OnInit{
 	constructor( private router:Router, @Inject( AuthService.Token ) private authService:AuthService.Class, private userService:UserService ) {}
 
 	private signUp:boolean = false;
+
+	ngOnInit(){
+		this.authService.login( "marchha@gmail.com", "carbonpass", false ).then( ( credentials ) => {
+			this.userService.getUserContext();
+		} );
+		this.authService.logout();
+	}
 
 	private login( username:string, password:string ):void {
 		this.authService.login( username, password, false ).then( ( credentials ) => {
