@@ -3,9 +3,10 @@
 		<div *ngIf="!signUp">
 			<h2>Blog Application</h2>
 			<h4>Log in</h4>
-			<form (ngSubmit)=" login( username, password ) " >
+			<form (ngSubmit)=" login( username, password, rememberMe ) " >
 				<input [(ngModel)]=" username " type="text" name="username" required placeholder="Username">
 				<input [(ngModel)]=" password " type="password" name="password" required placeholder="Password">
+				<input [(ngModel)]=" rememberMe " type="checkbox" name="rememberMe" value=true> Remember me
 				<button type="submit">Login</button>
 			</form>
 			<button (click)=" toggleSignUp() " >Not a user? Create an account.</button>
@@ -14,11 +15,10 @@
 		<div *ngIf=" signUp ">
 			<h2>Blog Application</h2>
 			<h4>Sign up</h4>
-			<form (ngSubmit)=" signup( name, username, password, contributor ) ">
+			<form (ngSubmit)=" signup( name, username, password ) ">
 				<input [(ngModel)]=" name " type="text" name="name" required placeholder="Name">
 				<input [(ngModel)]=" username " type="text" name="username" required placeholder="Username">
 				<input [(ngModel)]=" password " type="password" name="password" required placeholder="Password">
-				<input [(ngModel)]=" contributor " type="checkbox" name="contributor" value=true > I am a contributor to this blog.
 				<button type="submit">Signup</button>
 			</form>
 			<button (click)=" toggleSignUp() ">Cancel</button>

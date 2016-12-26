@@ -19,11 +19,23 @@ export class UserService {
 	constructor( private appContext:App.Context ){ }
 
 	private persistedUsers:PersistedDocument.Class;
-	private contributorsRole:PersistedRole.Class;
+	private readersRole:PersistedRole.Class;
 	public loggedUser:User = new User ("");
 	protected users:User[] & PersistedDocument.Class[] = [];
 
+	signup( name:string, email:string, password:string ):void {
+		let agent:Auth.Agent.Class = Auth.Agent.Factory.create( name, email, password );
+		this.appContext.auth.agents.register( agent ).then(
+			( [ _persistedAgent, response ]:[ PersistedDocument.Class, Response.Class ] ) =>
+			{
+				console.log( _persistedAgent.id );
+			}
+		).catch( console.error );
+	}
+
 	getUserContext():void {
+		this.users = [];
+
 		this.appContext.extendObjectSchema("User", {
 			"name": {
 			"@type": "string"
@@ -41,12 +53,6 @@ export class UserService {
 			{
 				this.persistedUsers = _persistedUsers;
 				this.getUsers();
-				return this.appContext.auth.roles.get( "contributors/" );
-			}
-			).then(
-			( [ _contributorsRole, response ]:[ PersistedRole.Class, Response.Class ] ) =>
-			{
-				this.contributorsRole = _contributorsRole;
 			}
 		).catch( console.error );
 	}
@@ -87,6 +93,8 @@ export class UserService {
 	}
 
 	getUsers():void {
+		this.users = [];
+
 		this.persistedUsers.getChildren<User>().then(
 			( [ _persistedUsers, response ]:[ User[] & PersistedDocument.Class[], Response.Class ] ) =>
 			{
@@ -104,18 +112,6 @@ export class UserService {
 		).catch( console.error );
 	}
 
-	signup(name:string, email:string, password:string, contributor:boolean):void {
-		let agent:Auth.Agent.Class = Auth.Agent.Factory.create( name, email, password );
-		this.appContext.auth.agents.register( agent ).then(
-			( [ _persistedAgent, response ]:[ PersistedDocument.Class, Response.Class ] ) =>
-			{
-				if( contributor ){
-					this.contributorsRole.addAgent( _persistedAgent );
-				}
-				this.appContext.auth.agents.delete( _persistedAgent.id );
-			}
-		).catch( console.error );
-	}
 }
 
 export default UserService;
