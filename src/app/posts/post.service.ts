@@ -21,6 +21,8 @@ export class PostService{
 	protected posts:Post[] & PersistedDocument.Class[] = [];
 
 	getPostContext():void {
+		this.posts = [];
+
 		this.appContext.extendObjectSchema("Post", {
 			"title":{
 				"@type": "string"
@@ -110,6 +112,8 @@ export class PostService{
 	}
 
 	getPosts():void {
+		this.posts = [];
+		
 		this.persistedPosts.getChildren<Post>().then(
 			( [ _posts, response ]:[ Post[] & PersistedDocument.Class[], Response.Class ] ) =>
 			{
